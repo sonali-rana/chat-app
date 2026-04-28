@@ -2,10 +2,12 @@
 	"name": "chatbot",
 	"version": "1.0.0",
 	"main": "server.js",
+	"homepage": "https://sonali-rana.github.io/chat-app",
 	"scripts": {
 		"server": "nodemon backend/server.js",
 		"start": "node backend/server.js",
-		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+		"deploy": "npm run build && gh-pages -d frontend/dist"
 	},
 	"type": "module",
 	"keywords": [],
@@ -22,6 +24,7 @@
 		"socket.io": "^4.7.5"
 	},
 	"devDependencies": {
+		"gh-pages": "^6.3.0",
 		"nodemon": "^3.1.4"
 	}
 }
