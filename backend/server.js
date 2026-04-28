@@ -2,6 +2,7 @@
 // const dotenv = require("dotenv");
 import express from "express";
 import dotenv from "dotenv";
+import { app, server } from "./socket/socket.js";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.routes.js";
@@ -12,7 +13,6 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json()); //to parse the incoming requests with JSON payloads(from req.body)
@@ -27,7 +27,8 @@ app.use("/api/users", userRoutes);
 // res.send("Hello World!");
 // });
 
-app.listen(PORT, () => {
+//earlier app.listen but due to websocket server.listen has been used
+server.listen(PORT, () => {
 	connectToMongoDB();
 	console.log(`Server running on port ${PORT}`);
 });

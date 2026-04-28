@@ -21,8 +21,8 @@ export const signup = async (req, res) => {
 		const salt = await bcrypt.genSalt(10); // the more the value the more time it takes to generate
 		const hashedPassword = await bcrypt.hash(password, salt);
 
-		const boyprofilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-		const girlprofilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+		const boyprofilePic = `https://api.dicebear.com/9.x/adventurer/svg?seed=boy-${username}`;
+		const girlprofilePic = `https://api.dicebear.com/9.x/adventurer/svg?seed=girl-${username}`;
 
 		const newUser = new User({
 			fullName,
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
 		const user = await User.findOne({ username });
 		const isPasswordCorrect = await bcrypt.compare(
 			password,
-			user?.password || ""
+			user?.password || "",
 		);
 
 		if (!user || !isPasswordCorrect) {
