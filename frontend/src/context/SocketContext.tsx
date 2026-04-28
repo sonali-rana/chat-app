@@ -40,7 +40,7 @@ export const SocketContextProvider: React.FC<SocketContextInterface> = ({
 	useEffect(() => {
 		if (!authUser) return;
 		//here pass backend URL
-		const newSocket = io("http://localhost:4000", {
+		const newSocket = io("https://chat-app-pp8k.onrender.com", {
 			query: {
 				userId: authUser._id,
 			},
